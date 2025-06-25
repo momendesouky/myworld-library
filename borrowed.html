@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}My Borrowed Books - Online Library{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'CSS/borrowed.css' %}">
+
+<div class="borrowed-container">
+    <h2 class="page-title">My Borrowed Books</h2>
+    
+    {% if not borrowed_books %}
+    <div class="empty-state">
+        <p>You haven't borrowed any books yet.</p>
+    </div>
+    {% else %}
+    <ul class="borrowed-list">
+        {% for record in borrowed_books %}
+        <li class="borrowed-item">
+            <div class="book-info">
+                {% if record.book.photo %}
+                    <img src="{{ record.book.photo.url }}" alt="{{ record.book.title }} cover">
+                {% else %}
+                    <img src="{% static 'images/book-placeholder.png' %}" alt="No cover available">
+                {% endif %}
+                <div class="book-details">
+                    <h3>{{ record.book.title }}</h3>
+                    <p>{{ record.book.author }}</p>
+                    <p class="due-date">Due: {{ record.due_date|date:"F j, Y" }}</p>
+                </div>
+            </div>
+            <form method="post" action="{% url 'return_book' record.book.id %}">
+                {% csrf_token %}
+                <button type="submit" class="return-btn">Return Book</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+body {
+    background-color: #FAF3E0;
+    font-family: 'Georgia', serif;
+    color: #3E2723;
+    padding: 40px;
+}
+
+form {
+    background-color: white;
+    border: 1px solid #8D6E63;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: auto;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #B76E79;
+    border-radius: 5px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.button {
+    background-color: #8D6E63;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 100%;
+}

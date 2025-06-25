@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Browse Books - Online Library{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'CSS/browse.css' %}">
+
+<div class="browse-container">
+    <h2 class="page-title">Browse Books</h2>
+    
+    <input type="text" id="searchInput" placeholder="Search by title, author, or category...">
+    
+    <div class="book-grid" id="bookGrid">
+        {% for book in books %}
+        <div class="book-card">
+            {% if book.photo %}
+                <img src="{{ book.photo.url }}" alt="{{ book.title }} photo" class="book-photo">
+            {% else %}
+                <label>NO photo</label>
+            {% endif %}
+            
+            
+            <div class="book-title">{{ book.title }}</div>
+            <div class="book-author">{{ book.author }}</div>
+            <div class="book-category">{{ book.category }}</div>
+            <div class="book-status {% if book.status == 'available' %}available{% else %}unavailable{% endif %}">
+                {{ book.get_status_display }}
+            </div>
+            <a href="{% url 'book_detail' book.id %}" class="button">View Details</a>
+        </div>
+        {% empty %}
+        <div>No books available in the library.</div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{% static 'JS/search_user.js' %}"></script>
+{% endblock %}

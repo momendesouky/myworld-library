@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Sign Up - Online Library{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'CSS/signup.css' %}">
+
+<div class="signup-container">
+    <h2 style="text-align: center;">Sign Up</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+            <div class="error-message">
+                Please correct the errors below.
+            </div>
+        {% endif %}
+        
+        <div>
+            <label for="id_username">Username</label>
+            <input type="text" id="id_username" name="username" required value="{{ form.username.value|default:'' }}">
+            {% if form.username.errors %}
+                <div class="error-message">{{ form.username.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div>
+            <label for="id_email">Email</label>
+            <input type="email" id="id_email" name="email" required value="{{ form.email.value|default:'' }}">
+            {% if form.email.errors %}
+                <div class="error-message">{{ form.email.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div>
+            <label for="id_password1">Password</label>
+            <input type="password" id="id_password1" name="password1" required>
+            {% if form.password1.errors %}
+                <div class="error-message">{{ form.password1.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div>
+            <label for="id_password2">Confirm Password</label>
+            <input type="password" id="id_password2" name="password2" required>
+            {% if form.password2.errors %}
+                <div class="error-message">{{ form.password2.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="checkbox-label">
+            <input type="checkbox" id="id_is_admin" name="is_admin" {% if form.is_admin.value %}checked{% endif %}>
+            <label for="id_is_admin">Register as Admin</label>
+        </div>
+        
+        <button type="submit" class="button">Sign Up</button>
+    </form>
+    <p style="text-align: center; margin-top: 15px;">
+        Already have an account? <a href="{% url 'login' %}" style="color: #8D6E63;">Login</a>
+    </p>
+</div>
+{% endblock %}

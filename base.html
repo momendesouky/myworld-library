@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Online Library System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'CSS/base.css' %}">
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="{%url "dashboard" %}" class="nav-logo">📚 Online Library</a>
+        <ul class="nav-links">
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    
+                <li><a href="{% url 'add_book' %}" class="{% if 'add_book' in request.path %}active{% endif %}">ADD_Book</a></li>
+                
+                {% else %}
+                    <li><a href="{% url 'browse_books' %}" class="{% if 'browse' in request.path %}active{% endif %}">Browse</a></li>
+                    <li><a href="{% url 'borrowed_books' %}" class="{% if 'borrowed' in request.path %}active{% endif %}">My Books</a></li>
+                {% endif %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="{% if 'login' in request.path %}active{% endif %}">Login</a></li>
+                <li><a href="{% url 'signup' %}" class="{% if 'signup' in request.path %}active{% endif %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </div>
+
+    {% block js %}{% endblock %}
+</body>
+</html>

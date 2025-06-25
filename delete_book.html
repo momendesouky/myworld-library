@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Delete Book - Online Library{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'CSS/delete_book.css' %}">
+<div class="container">
+    <h2>Delete Book</h2>
+    <p>You are about to delete: <strong>{{ book.title }}</strong> by {{ book.author }}</p>
+    
+    <form method="post" id="deleteForm" action="{% url 'delete_book' book.id %}">
+        {% csrf_token %}
+        <label>Type the book ID to confirm:</label>
+        <input type="text" name="confirmation" id="confirm" placeholder="Enter book ID" required>
+        
+        <div style="display: flex; gap: 15px; margin-top: 20px;">
+            <a href="{% url 'admin_book_list' %}" style="background-color: #6c757d; margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;">
+    Cancel
+</a>
+            <button type="submit">Confirm Delete</button>
+        </div>
+    </form>
+</div>
+<script src="{% static 'JS/delete_book.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,74 @@
+body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #FAF3E0;
+        padding: 1rem 2rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-logo {
+        color: #3E2723;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    
+    .nav-links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 1.5rem;
+    }
+    
+    .nav-links a {
+        color: #3E2723;
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+        background-color: #B76E79;
+        color: white;
+    }
+    
+    /* Base content styles */
+    .main-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: #FAF3E0;
+    }
+    
+    /* Messages */
+    .messages {
+        margin-bottom: 1.5rem;
+    }
+    
+    .alert {
+        padding: 12px 15px;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+    
+    .alert-success {
+        background-color: #E8F5E9;
+        color: #2e7d32;
+        border: 1px solid #C8E6C9;
+    }
+    
+    .alert-error {
+        background-color: #FFEBEE;
+        color: #c62828;
+        border: 1px solid #FFCDD2;
+    }

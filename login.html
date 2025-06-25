@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login - Online Library{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'CSS/login.css' %}">
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit" class="button">Login</button>
+    </form>
+    <p style="text-align: center; margin-top: 15px;">
+        Don't have an account? <a href="{% url 'signup' %}" style="color: #8D6E63;">Sign up</a>
+    </p>
+</div>
+{% endblock %}
